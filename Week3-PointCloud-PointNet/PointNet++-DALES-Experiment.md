@@ -64,27 +64,13 @@ self.conv2 = nn.Conv1d(128, num_classes, 1) # 128 → 8 类 logits
 
 ## 📈 训练曲线
 
-> **注：** 原始报告中训练曲线为交互式 Plotly 图表，无法在 Markdown 中直接渲染。此处记录关键趋势：
-> - 训练 loss 从 ~1.6 逐步下降至 ~0.6（epoch 50）
-> - 验证 mIoU 在 epoch 45 达到最优 71.4%，之后趋于平稳
-> - 验证 OA 同步提升至 ~97%
+![训练曲线](images/training_curve.png)
 
 ---
 
 ## 📊 逐类 IoU（测试集）
 
-> **注：** 逐类 IoU 柱状图在原报告中为交互式 Plotly 图表。各类别 IoU 如下：
-
-| 类别 | IoU | 说明 |
-|------|-----|------|
-| 地面 (Ground) | 96.4% | ✅ 优秀 |
-| 建筑 (Building) | 92.4% | ✅ 优秀 |
-| 植被 (Vegetation) | 90.5% | ✅ 优秀 |
-| 电力线 (Powerline) | 88.8% | ✅ 优秀 |
-| 围栏 (Fence) | ~70% | ✅ 良好 |
-| 轿车 (Car) | 72.6% | ✅ 良好 |
-| 电线杆 (Pole) | ~60% | ⚠️ 一般 |
-| 卡车 (Truck) | 18.5% | ❌ 差 |
+![逐类 IoU](images/per_class_iou.png)
 
 > ⚠️ **卡车 IoU 为什么只有 18.5%？**
 >
