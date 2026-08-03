@@ -2,15 +2,15 @@
 
 > 三维重建 / 点云处理 暑期学习笔记
 >
-> 段杰豪 · 2026年7月–8月
+> 段杰豪 · 2026年7月~8月
 
 ---
 
 ## 📚 学习路线
 
 ```
-第一周                      第二周                          第三周                      第四周
-三维表示方法 ──────────→ 遥感图像语义分割 ──────────→ 点云语义分割 ──────────→ 高斯泼溅
+第一周                      第二周                          第三周                       第四周
+三维表示方法 ──────────→ 遥感图像语义分割 ──────────→ 点云语义分割 ──────────→ 新视角合成
 (理论基础)                (SegEarth-OV3)                (PointNet / PointNet++)       (3DGS vs NeRF)
 ```
 
@@ -38,17 +38,19 @@
   - tile 级 vs block 级数据划分的教训（+13.6% mIoU）
   - 稀有类别（卡车 0.2%）的挑战与改进方向
 
-### [Week 4 — 高斯泼溅 & 新视角合成](Week4-Gaussian-Splatting/)
+### [Week 4 — 新视角合成：3DGS vs NeRF](Week4-3DGS-NeRF-Comparison/)
 
-- **[理论笔记：如何从二维照片重建三维世界？](Week4-Gaussian-Splatting/theory.html)**
-  - 从多视图几何到神经渲染的完整脉络
-  - SfM（稀疏点云）→ MVS（稠密点云）→ 传统重建 vs 神经渲染
-  - 3D Gaussian Splatting 核心原理：从点云到高斯椭球体的可微渲染
+- **[理论笔记：如何从二维照片重建三维世界？](Week4-3DGS-NeRF-Comparison/novel-view-synthesis-theory.md)**
+  - 新视角合成（NVS）问题定义
+  - 传统管线：COLMAP/SfM → MVS → 网格重建 → 纹理贴图
+  - NeRF：隐式 MLP + Ray Marching + Instant-NGP 加速
+  - 3DGS：显式高斯椭球 + Splatting + 自适应密度控制
+  - NeRF→INGP→3DGS 演化逻辑：逐步去 MLP 化
 
-- **[实践报告：3DGS vs NeRF — 新视角合成对比实验](Week4-Gaussian-Splatting/experiments.html)**
-  - 在多个场景（tandt_truck, tandt_train, db_drjohnson, db_playroom）上对比 3DGS 和 NeRF（Instant-NGP）
-  - 训练速度、渲染质量（PSNR/SSIM/LPIPS）、推理 FPS 三维度评估
-  - 实验结果可视化与对比分析
+- **[对比实验：3DGS vs Instant-NGP](Week4-3DGS-NeRF-Comparison/3dgs-vs-nerf-experiments.md)**
+  - 4 个场景（Train, Truck, Playroom, DrJohnson）定量 + 视觉对比
+  - 3DGS 全面领先（PSNR +0.40~5.00 dB），Playroom 差距最大（+5.00 dB）
+  - 核心发现：数据质量是两者的共同上限
 
 ---
 
@@ -69,6 +71,8 @@
 | **MVS** | Multi-View Stereo — 从已知位姿的多图重建稠密点云 |
 | **可微渲染** | 渲染过程可求导，让梯度从像素反传回 3D 参数 |
 | **Instant-NGP** | 多分辨率哈希编码 + 微型 MLP，NeRF 训练从小时级降到秒级 |
+| **Splatting** | 高斯椭球一次性投影到屏幕（vs NeRF逐像素射光线） |
+| **Alpha Blending** | NeRF 和 3DGS 共享的体积渲染公式 |
 
 ---
 
@@ -77,6 +81,6 @@
 - [PointNet (CVPR 2017)](https://arxiv.org/abs/1612.00593)
 - [PointNet++ (NeurIPS 2017)](https://arxiv.org/abs/1706.02413)
 - [NeRF (ECCV 2020)](https://arxiv.org/abs/2003.08934)
-- [3D Gaussian Splatting (SIGGRAPH 2023)](https://arxiv.org/abs/2308.04079)
 - [Instant-NGP (SIGGRAPH 2022)](https://arxiv.org/abs/2201.05989)
+- [3D Gaussian Splatting (SIGGRAPH 2023)](https://arxiv.org/abs/2308.04079)
 - [SegEarth-OV3](https://github.com/earth-vision/SegEarth-OV3)
