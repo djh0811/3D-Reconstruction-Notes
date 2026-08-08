@@ -9,9 +9,9 @@
 ## 📚 学习路线
 
 ```
-第一周                      第二周                          第三周                       第四周
-三维表示方法 ──────────→ 遥感图像语义分割 ──────────→ 点云语义分割 ──────────→ 新视角合成
-(理论基础)                (SegEarth-OV3)                (PointNet / PointNet++)       (3DGS vs NeRF)
+第一周                      第二周                          第三周                       第四周                         第五周
+三维表示方法 ──────────→ 遥感图像语义分割 ──────────→ 点云语义分割 ──────────→ 新视角合成 ──────────→ 建筑重建
+(理论基础)                (SegEarth-OV3)                (PointNet / PointNet++)       (3DGS vs NeRF)              (BWFormer + City3D)
 ```
 
 ---
@@ -51,6 +51,16 @@
   - 4 个场景（Train, Truck, Playroom, DrJohnson）定量 + 视觉对比
   - 3DGS 全面领先（PSNR +0.40~5.00 dB），Playroom 差距最大（+5.00 dB）
   - 核心发现：数据质量是两者的共同上限
+
+### [Week 5 — 建筑重建：BWFormer + City3D](Week5-Building-Reconstruction/bwformer-city3d-report.md)
+
+- 复现 BWFormer（CVPR 2025）——基于 Transformer 的建筑 3D 线框重建
+  - 2.5D 化简策略：2D 角点检测 + 高度回归 + 边预测
+  - 第一次训练（BF16, 50 epoch）结果未达预期，深入分析 5 个可能瓶颈
+  - 第二次训练（FP32, 100 epoch）改进中
+- 配置 City3D 作为对比基线——传统 PolyFit 几何方法
+  - C++ 编译 + SCIP 开源求解器 + 数据格式适配
+  - 两种方法互补：深度学习精度上限高 vs 传统方法无需训练
 
 ---
 
