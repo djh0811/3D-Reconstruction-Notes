@@ -9,9 +9,9 @@
 ## 📚 学习路线
 
 ```
-第一周                      第二周                          第三周                       第四周                         第五周
-三维表示方法 ──────────→ 遥感图像语义分割 ──────────→ 点云语义分割 ──────────→ 新视角合成 ──────────→ 建筑重建
-(理论基础)                (SegEarth-OV3)                (PointNet / PointNet++)       (3DGS vs NeRF)              (BWFormer + City3D)
+Week 1                  Week 2                       Week 3                    Week 4                      Week 5
+三维表示方法 ────────→ 遥感图像语义分割 ────────→ 点云语义分割 ────────→ 新视角合成 ──────────→ 建筑重建
+(理论基础)              (SegEarth-OV3)               (PointNet/PointNet++)     (3DGS vs NeRF)              (BWFormer + City3D)
 ```
 
 ---
